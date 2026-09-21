@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para ti 💛</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;500;600&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: 'Playfair Display', serif;
+    background:
+        radial-gradient(circle at 50% 30%, #fffde5, transparent 40%),
+        linear-gradient(135deg, #fff3b0, #f5d36b, #fff9dc);
+}
+
+/* =========================
+   PANTALLA INICIAL
+========================= */
+
+.inicio {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+
+    background:
+        radial-gradient(circle at center, #fff9d9, transparent 45%),
+        linear-gradient(135deg, #f8df86, #fff8d8);
+
+    transition:
+        opacity 1.5s ease,
+        visibility 1.5s ease;
+}
+
+.inicio.oculto {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.inicio h1 {
+    color: #765000;
+    font-size: clamp(32px, 9vw, 52px);
+    font-weight: 500;
+    margin: 0 0 12px;
+}
+
+.inicio p {
+    color: #8b681d;
+    font-size: 16px;
+    margin: 0 0 35px;
+    max-width: 320px;
+    line-height: 1.6;
+}
+
+.boton {
+    border: none;
+    padding: 15px 32px;
+    border-radius: 50px;
+
+    background: linear-gradient(135deg, #e7b52e, #c68b13);
+    color: white;
+
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(120, 80, 0, .25);
+
+    transition: .3s;
+}
+
+.boton:hover {
+    transform: scale(1.06);
+}
+
+.boton:active {
+    transform: scale(.95);
+}
+
+/* =========================
+   CONTENIDO
+========================= */
+
+.contenido {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    opacity: 0;
+    transform: scale(.95);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+}
+
+.contenido.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.titulo {
+    color: #765000;
+    font-size: clamp(28px, 7vw, 45px);
+    font-weight: 500;
+    margin: 0;
+}
+
+.subtitulo {
+    color: #9a7117;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin: 10px 20px 0;
+}
+
+/* =========================
+   RAMO
+========================= */
+
+.ramo {
+    position: relative;
+    width: 360px;
+    height: 440px;
+    margin-top: 5px;
+}
+
+/* Tallos */
+
+.tallo {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+
+    width: 6px;
+    height: 285px;
+
+    background: linear-gradient(
+        to right,
+        #356b2d,
+        #72a951,
+        #356b2d
+    );
+
+    border-radius: 10px;
+
+    transform-origin: bottom center;
+}
+
+.tallo:nth-child(1) {
+    transform: rotate(-28deg);
+}
+
+.tallo:nth-child(2) {
+    transform: rotate(-18deg);
+}
+
+.tallo:nth-child(3) {
+    transform: rotate(-9deg);
+}
+
+.tallo:nth-child(4) {
+    transform: rotate(8deg);
+}
+
+.tallo:nth-child(5) {
+    transform: rotate(18deg);
+}
+
+.tallo:nth-child(6) {
+    transform: rotate(28deg);
+}
+
+/* Flores */
+
+.flor {
+    position: absolute;
+
+    width: 105px;
+    height: 105px;
+
+    filter:
+        drop-shadow(0 5px 5px rgba(120,80,0,.18));
+
+    animation: balanceo 4s ease-in-out infinite;
+}
+
+.flor:nth-of-type(7) {
+    top: 0;
+    left: 127px;
+}
+
+.flor:nth-of-type(8) {
+    top: 55px;
+    left: 35px;
+}
+
+.flor:nth-of-type(9) {
+    top: 55px;
+    right: 35px;
+}
+
+.flor:nth-of-type(10) {
+    top: 130px;
+    left: 5px;
+}
+
+.flor:nth-of-type(11) {
+    top: 130px;
+    right: 5px;
+}
+
+.flor:nth-of-type(12) {
+    top: 115px;
+    left: 127px;
+}
+
+.petalo {
+    position: absolute;
+
+    width: 43px;
+    height: 70px;
+
+    left: 31px;
+    top: 17px;
+
+    border-radius: 50% 50% 45% 45%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff36a,
+            #ffd83d 50%,
+            #eeb51b
+        );
+
+    transform-origin: 50% 78%;
+}
+
+.petalo:nth-child(1) {
+    transform: rotate(0deg) translateY(-22px);
+}
+
+.petalo:nth-child(2) {
+    transform: rotate(45deg) translateY(-22px);
+}
+
+.petalo:nth-child(3) {
+    transform: rotate(90deg) translateY(-22px);
+}
+
+.petalo:nth-child(4) {
+    transform: rotate(135deg) translateY(-22px);
+}
+
+.petalo:nth-child(5) {
+    transform: rotate(180deg) translateY(-22px);
+}
+
+.petalo:nth-child(6) {
+    transform: rotate(225deg) translateY(-22px);
+}
+
+.petalo:nth-child(7) {
+    transform: rotate(270deg) translateY(-22px);
+}
+
+.petalo:nth-child(8) {
+    transform: rotate(315deg) translateY(-22px);
+}
+
+.centro {
+    position: absolute;
+
+    width: 43px;
+    height: 43px;
+
+    left: 31px;
+    top: 31px;
+
+    z-index: 10;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #925b05 15%,
+            #5a3300 100%
+        );
+
+    box-shadow:
+        0 2px 5px rgba(80,40,0,.3);
+}
+
+/* Hojas */
+
+.hoja {
+    position: absolute;
+
+    width: 85px;
+    height: 38px;
+
+    bottom: 140px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #376f2d,
+            #81b95d
+        );
+
+    border-radius: 100% 0 100% 0;
+
+    z-index: 2;
+}
+
+.hoja:nth-last-of-type(4) {
+    left: 43px;
+    transform: rotate(25deg);
+}
+
+.hoja:nth-last-of-type(3) {
+    right: 43px;
+    transform: scaleX(-1) rotate(25deg);
+}
+
+/* Papel */
+
+.papel {
+    position: absolute;
+
+    bottom: 0;
+    left: 42px;
+
+    width: 276px;
+    height: 155px;
+
+    z-index: 8;
+
+    background:
+        linear-gradient(
+            110deg,
+            #fffdf2,
+            #f7e5ae,
+            #fff9dd
+        );
+
+    clip-path:
+        polygon(
+            3% 0,
+            97% 0,
+            70% 100%,
+            30% 100%
+        );
+
+    filter:
+        drop-shadow(
+            0 10px 8px rgba(90,55,0,.18)
+        );
+}
+
+/* Cinta */
+
+.cinta {
+    position: absolute;
+
+    bottom: 67px;
+    left: 140px;
+
+    width: 80px;
+    height: 25px;
+
+    z-index: 12;
+
+    background:
+        linear-gradient(
+            #e7bd48,
+            #b77b13
+        );
+
+    border-radius: 5px;
+}
+
+/* Lazo */
+
+.lazo {
+    position: absolute;
+
+    bottom: 38px;
+    left: 130px;
+
+    width: 100px;
+    height: 55px;
+
+    z-index: 13;
+}
+
+.lazo::before,
+.lazo::after {
+    content: "";
+
+    position: absolute;
+
+    top: 3px;
+
+    width: 52px;
+    height: 38px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f1cc57,
+            #b98219
+        );
+}
+
+.lazo::before {
+    left: 0;
+    border-radius: 70% 20% 70% 40%;
+    transform: rotate(-18deg);
+}
+
+.lazo::after {
+    right: 0;
+    border-radius: 20% 70% 40% 70%;
+    transform: rotate(18deg);
+}
+
+.lazo span {
+    position: absolute;
+
+    left: 38px;
+    top: 10px;
+
+    width: 25px;
+    height: 25px;
+
+    background: #c99524;
+
+    border-radius: 50%;
+
+    z-index: 3;
+}
+
+/* =========================
+   FIRMA
+========================= */
+
+.firma {
+    margin-top: -5px;
+
+    color: #795817;
+
+    opacity: 0;
+
+    animation: aparecerFirma 2s ease 2s forwards;
+}
+
+.firma .texto {
+    font-size: 17px;
+}
+
+.firma .nombre {
+    font-family: 'Great Vibes', cursive;
+
+    font-size: 40px;
+
+    color: #765000;
+
+    margin-top: 2px;
+}
+
+/* =========================
+   PÉTALOS
+========================= */
+
+.petalo-caida {
+    position: fixed;
+
+    top: -30px;
+
+    color: #e8b52b;
+
+    pointer-events: none;
+
+    z-index: 50;
+
+    animation:
+        caer linear forwards;
+}
+
+@keyframes balanceo {
+
+    0%, 100% {
+        transform:
+            rotate(-2deg)
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            rotate(2deg)
+            translateY(-7px);
+    }
+
+}
+
+@keyframes caer {
+
+    0% {
+        transform:
+            translateY(-30px)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: .8;
+    }
+
+    100% {
+        transform:
+            translateY(110vh)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+
+}
+
+@keyframes aparecerFirma {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
+
+}
+
+/* =========================
+   MÓVIL
+========================= */
+
+@media (max-width: 500px) {
+
+    .ramo {
+        transform: scale(.78);
+
+        margin-top: -35px;
+        margin-bottom: -50px;
+    }
+
+    .titulo {
+        font-size: 30px;
+    }
+
+    .subtitulo {
+        font-size: 10px;
+    }
+
+    .firma .nombre {
+        font-size: 35px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     PANTALLA DE ENTRADA
+========================= -->
+
+<section class="inicio" id="inicio">
+
+    <h1>💛 Tengo algo para ti...</h1>
+
+    <p>
+        No es mucho, pero lo hice pensando en ti.
+        <br>
+        Toca el botón.
+    </p>
+
+    <button class="boton" onclick="abrirRegalo()">
+        🌻 Abrir mi regalo 🌻
+    </button>
+
+</section>
+
+
+<!-- =========================
+     REGALO
+========================= -->
+
+<main class="contenido" id="contenido">
+
+    <h1 class="titulo">
+        De yo para tu💛
+    </h1>
+  
+
+    <p class="subtitulo">
+        PORQUE ALGUNAS FLORES MERECEN DURAR PARA SIEMPRE
+    </p>
+
+
+    <div class="ramo">
+
+        <!-- Tallos -->
+
+        <div class="tallo"></div>
+        <div class="tallo"></div>
+        <div class="tallo"></div>
+        <div class="tallo"></div>
+        <div class="tallo"></div>
+        <div class="tallo"></div>
+
+
+        <!-- FLORES -->
+
+        <div class="flor">
+
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+
+            <div class="centro"></div>
+
+        </div>
+
+
+        <div class="flor">
+
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+
+            <div class="centro"></div>
+
+        </div>
+
+
+        <div class="flor">
+
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+
+            <div class="centro"></div>
+
+        </div>
+
+
+        <div class="flor">
+
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+
+            <div class="centro"></div>
+
+        </div>
+
+
+        <div class="flor">
+
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+
+            <div class="centro"></div>
+
+        </div>
+
+
+        <div class="flor">
+
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+
+            <div class="centro"></div>
+
+        </div>
+
+
+        <!-- Hojas -->
+
+        <div class="hoja"></div>
+        <div class="hoja"></div>
+
+
+        <!-- Envoltura -->
+
+        <div class="papel"></div>
+
+        <div class="cinta"></div>
+
+        <div class="lazo">
+            <span></span>
+        </div>
+
+    </div>
+
+
+    <!-- FIRMA -->
+
+    <div class="firma">
+
+        <div class="texto">
+            Te quiere mucho,
+        </div>
+
+        <div class="nombre">
+            Att: Tu bestia 🐻💛
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+
+/* =========================
+   ABRIR REGALO
+========================= */
+
+function abrirRegalo() {
+
+    const inicio =
+        document.getElementById("inicio");
+
+    const contenido =
+        document.getElementById("contenido");
+
+    inicio.classList.add("oculto");
+
+    setTimeout(() => {
+
+        contenido.classList.add("visible");
+
+        comenzarPetalos();
+
+    }, 700);
+
+}
+
+
+/* =========================
+   PÉTALOS CAYENDO
+========================= */
+
+function crearPetalo() {
+
+    const petalo =
+        document.createElement("div");
+
+    petalo.className =
+        "petalo-caida";
+
+    petalo.innerHTML =
+        Math.random() > .5
+        ? "✦"
+        : "❋";
+
+    petalo.style.left =
+        Math.random() * 100 + "vw";
+
+    petalo.style.fontSize =
+        (10 + Math.random() * 15) + "px";
+
+    petalo.style.animationDuration =
+        (5 + Math.random() * 7) + "s";
+
+    document.body.appendChild(petalo);
+
+    setTimeout(() => {
+
+        petalo.remove();
+
+    }, 13000);
+
+}
+
+
+/* =========================
+   INICIAR LLUVIA
+========================= */
+
+function comenzarPetalos() {
+
+    for (let i = 0; i < 15; i++) {
+
+        setTimeout(
+            crearPetalo,
+            i * 250
+        );
+
+    }
+
+    setInterval(
+        crearPetalo,
+        650
+    );
+
+}
+
+</script>
+
+</body>
+</html>
