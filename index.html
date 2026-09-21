@@ -1,249 +1,736 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>De yo, para tu🌷💛</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para ti 🌷💛</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      overflow: hidden;
-      background: linear-gradient(180deg, #fff9d9, #fffdf1);
-      font-family: Georgia, serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #5c4a1f;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: Georgia, "Times New Roman", serif;
+  background:
+    radial-gradient(circle at 50% 20%, #fffef1 0%, #fff8cf 45%, #f9eeb0 100%);
+  color: #65501b;
+}
 
-    .card {
-      width: 90%;
-      max-width: 500px;
-      padding: 35px 25px;
-      text-align: center;
-      background: rgba(255,255,255,0.75);
-      border-radius: 30px;
-      box-shadow: 0 10px 40px rgba(150,120,20,0.15);
-      backdrop-filter: blur(8px);
-      z-index: 2;
-    }
+/* =========================
+   PANTALLA DEL SOBRE
+========================= */
 
-    h1 {
-      margin: 0 0 15px;
-      font-size: 2.4rem;
-      color: #c89b00;
-    }
+.intro {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  background:
+    radial-gradient(circle at center, #fffef5, #fff5c7);
+  transition: opacity 1s ease, visibility 1s ease;
+}
 
-    .message {
-      font-size: 1.15rem;
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
+.intro.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
 
-    .signature {
-      font-size: 1.1rem;
-      font-style: italic;
-      margin-top: 20px;
-    }
+.intro-text {
+  margin-bottom: 25px;
+  text-align: center;
+  animation: appear 1.5s ease;
+}
 
-    /* RAMO */
-    .bouquet {
-      position: relative;
-      width: 280px;
-      height: 280px;
-      margin: 0 auto 15px;
-    }
+.intro-text h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #b48b00;
+}
 
-    .tulip {
-      position: absolute;
-      width: 65px;
-      height: 80px;
-      animation: float 3s ease-in-out infinite;
-    }
+.intro-text p {
+  margin-top: 8px;
+  font-size: 1rem;
+  opacity: .75;
+}
 
-    .flower {
-      position: absolute;
-      width: 55px;
-      height: 50px;
-      background: #ffd92f;
-      border-radius: 50% 50% 45% 45%;
-      top: 0;
-      left: 5px;
-      box-shadow:
-        inset 8px 0 #f6c928,
-        inset -8px 0 #ffe866;
-    }
+/* Sobre */
 
-    .flower::before {
-      content: "";
-      position: absolute;
-      width: 30px;
-      height: 45px;
-      background: #ffd92f;
-      left: 12px;
-      top: -10px;
-      border-radius: 50% 50% 30% 30%;
-    }
+.envelope {
+  position: relative;
+  width: 280px;
+  height: 190px;
+  cursor: pointer;
+  animation: envelopeFloat 3s ease-in-out infinite;
+  filter: drop-shadow(0 15px 15px rgba(100,75,0,.18));
+}
 
-    .stem {
-      position: absolute;
-      width: 7px;
-      height: 115px;
-      background: #6fa33a;
-      left: 30px;
-      top: 42px;
-      border-radius: 10px;
-      transform-origin: top;
-    }
+.envelope-body {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, #fff9d9, #f3df91);
+  border-radius: 5px;
+  overflow: hidden;
+}
 
-    .leaf {
-      position: absolute;
-      width: 35px;
-      height: 16px;
-      background: #78ad3b;
-      border-radius: 100% 0 100% 0;
-      top: 105px;
-      left: 4px;
-      transform: rotate(-30deg);
-    }
+.envelope-body::before,
+.envelope-body::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
 
-    .t1 { left: 105px; top: 20px; transform: rotate(-10deg); }
-    .t2 { left: 55px; top: 55px; transform: rotate(-20deg); animation-delay: .4s; }
-    .t3 { left: 150px; top: 45px; transform: rotate(15deg); animation-delay: .8s; }
-    .t4 { left: 95px; top: 85px; transform: rotate(5deg); animation-delay: 1.2s; }
-    .t5 { left: 185px; top: 80px; transform: rotate(20deg); animation-delay: 1.6s; }
-    .t6 { left: 35px; top: 105px; transform: rotate(-25deg); animation-delay: 2s; }
-    .t7 { left: 150px; top: 110px; transform: rotate(15deg); animation-delay: 2.4s; }
+.envelope-body::before {
+  left: 0;
+  border-width: 95px 140px 0 0;
+  border-color: #f0d77e transparent transparent transparent;
+}
 
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0) rotate(var(--r, 0deg));
-      }
+.envelope-body::after {
+  right: 0;
+  border-width: 0 140px 95px 0;
+  border-color: transparent #e8cc6e transparent transparent;
+}
 
-      50% {
-        transform: translateY(-8px) rotate(var(--r, 0deg));
-      }
-    }
+/* Solapa */
 
-    /* PÉTALOS */
-    .petal {
-      position: fixed;
-      top: -30px;
-      width: 15px;
-      height: 22px;
-      background: #ffd92f;
-      border-radius: 50% 50% 50% 0;
-      transform: rotate(45deg);
-      opacity: .7;
-      animation: fall linear infinite;
-    }
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-top: 105px solid #ffeaa4;
+  transform-origin: top center;
+  transition: transform 1s cubic-bezier(.65,.05,.36,1);
+  z-index: 5;
+}
 
-    .p1 { left: 8%; animation-duration: 7s; animation-delay: 0s; }
-    .p2 { left: 25%; animation-duration: 9s; animation-delay: 2s; }
-    .p3 { left: 48%; animation-duration: 8s; animation-delay: 1s; }
-    .p4 { left: 70%; animation-duration: 10s; animation-delay: 3s; }
-    .p5 { left: 90%; animation-duration: 7s; animation-delay: 4s; }
+.envelope.open .flap {
+  transform: rotateX(180deg);
+}
 
-    @keyframes fall {
-      from {
-        transform: translateY(-30px) rotate(0deg);
-      }
+/* Carta */
 
-      to {
-        transform: translateY(110vh) rotate(360deg);
-      }
-    }
+.letter {
+  position: absolute;
+  width: 230px;
+  height: 145px;
+  left: 25px;
+  top: 25px;
+  background: #fffdf0;
+  border-radius: 4px;
+  box-shadow: 0 5px 15px rgba(100,70,0,.15);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7rem;
+  color: #c39b12;
+  transition: transform 1s ease;
+}
 
-    @media (max-width: 400px) {
-      h1 {
-        font-size: 2rem;
-      }
+.envelope.open .letter {
+  transform: translateY(-125px);
+}
 
-      .message {
-        font-size: 1rem;
-      }
+/* Corazón */
 
-      .bouquet {
-        transform: scale(.85);
-        margin-top: -10px;
-        margin-bottom: -15px;
-      }
-    }
-  </style>
+.heart {
+  position: absolute;
+  z-index: 8;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  width: 35px;
+  height: 35px;
+  background: #e5b923;
+  border-radius: 4px;
+  box-shadow: 0 3px 10px rgba(130,90,0,.2);
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  background: #e5b923;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -18px;
+  left: 0;
+}
+
+.heart::after {
+  left: 18px;
+  top: 0;
+}
+
+/* =========================
+   PÁGINA PRINCIPAL
+========================= */
+
+.page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: scale(.95);
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.page.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Tarjeta */
+
+.card {
+  width: min(92%, 520px);
+  min-height: 650px;
+  padding: 30px 22px 35px;
+  text-align: center;
+  background: rgba(255,255,255,.72);
+  border: 1px solid rgba(210,175,60,.25);
+  border-radius: 35px;
+  box-shadow:
+    0 20px 60px rgba(130,100,20,.15),
+    inset 0 0 30px rgba(255,255,255,.4);
+  backdrop-filter: blur(8px);
+  position: relative;
+  z-index: 5;
+}
+
+.title {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all 1s ease;
+}
+
+.page.show .title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.title h1 {
+  margin: 0;
+  color: #c39809;
+  font-size: 2.5rem;
+}
+
+.title p {
+  margin: 8px 0 0;
+  font-size: 1rem;
+  color: #806a2a;
+}
+
+/* =========================
+   RAMO
+========================= */
+
+.bouquet {
+  position: relative;
+  width: 330px;
+  height: 350px;
+  margin: 10px auto 0;
+}
+
+/* Tallos */
+
+.stem {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  width: 7px;
+  height: 210px;
+  background: linear-gradient(90deg, #47782d, #82ad45, #47782d);
+  border-radius: 10px;
+  transform-origin: bottom;
+  opacity: 0;
+  transform: scaleY(0);
+  transition: transform 1.2s ease, opacity .5s ease;
+}
+
+.page.show .stem {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.s1 { transform: rotate(-24deg); transition-delay: .2s; }
+.s2 { transform: rotate(-12deg); transition-delay: .3s; }
+.s3 { transform: rotate(0deg); transition-delay: .4s; }
+.s4 { transform: rotate(12deg); transition-delay: .5s; }
+.s5 { transform: rotate(24deg); transition-delay: .6s; }
+
+/* Hojas */
+
+.leaf {
+  position: absolute;
+  width: 75px;
+  height: 30px;
+  background: linear-gradient(135deg, #82ad43, #4d812d);
+  border-radius: 100% 0 100% 0;
+  opacity: 0;
+  transform: scale(0);
+  transition: transform .8s ease, opacity .6s ease;
+}
+
+.page.show .leaf {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.l1 {
+  left: 65px;
+  bottom: 105px;
+  transform: rotate(-28deg);
+  transition-delay: .8s;
+}
+
+.l2 {
+  left: 185px;
+  bottom: 130px;
+  transform: rotate(28deg);
+  transition-delay: 1s;
+}
+
+.l3 {
+  left: 85px;
+  bottom: 65px;
+  transform: rotate(-18deg);
+  transition-delay: 1.1s;
+}
+
+.l4 {
+  left: 175px;
+  bottom: 70px;
+  transform: rotate(22deg);
+  transition-delay: 1.2s;
+}
+
+/* =========================
+   TULIPAN
+========================= */
+
+.tulip {
+  position: absolute;
+  width: 90px;
+  height: 110px;
+  top: 5px;
+  opacity: 0;
+  transform: translateY(35px) scale(.6);
+  transition:
+    opacity .8s ease,
+    transform 1s cubic-bezier(.2,.8,.2,1);
+}
+
+.page.show .tulip {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Cabeza del tulipán */
+
+.tulip-head {
+  position: absolute;
+  left: 8px;
+  top: 0;
+  width: 74px;
+  height: 76px;
+}
+
+/* Pétalos */
+
+.petal {
+  position: absolute;
+  background: linear-gradient(135deg, #fff36b, #f4c51d);
+  box-shadow:
+    inset 5px 0 8px rgba(255,255,255,.35),
+    inset -6px 0 8px rgba(190,140,0,.12);
+}
+
+/* Pétalo central */
+
+.petal-center {
+  left: 23px;
+  top: 0;
+  width: 32px;
+  height: 70px;
+  border-radius: 50% 50% 42% 42%;
+  z-index: 3;
+}
+
+/* Pétalos laterales */
+
+.petal-left {
+  left: 4px;
+  top: 17px;
+  width: 40px;
+  height: 58px;
+  border-radius: 65% 35% 45% 55%;
+  transform: rotate(-18deg);
+  z-index: 2;
+}
+
+.petal-right {
+  right: 3px;
+  top: 17px;
+  width: 40px;
+  height: 58px;
+  border-radius: 35% 65% 55% 45%;
+  transform: rotate(18deg);
+  z-index: 2;
+}
+
+/* Pétalo exterior */
+
+.petal-back {
+  left: 15px;
+  top: 27px;
+  width: 58px;
+  height: 50px;
+  border-radius: 50% 50% 45% 45%;
+  background: linear-gradient(180deg, #f7cf2b, #eeb51b);
+  z-index: 1;
+}
+
+/* Borde curvado */
+
+.petal-center::after,
+.petal-left::after,
+.petal-right::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 15px;
+  top: 0;
+  left: 0;
+  border-top: 2px solid rgba(255,255,255,.35);
+  border-radius: 50%;
+}
+
+/* Posiciones */
+
+.t1 {
+  left: 120px;
+  top: 10px;
+  z-index: 7;
+  transition-delay: 1.1s;
+}
+
+.t2 {
+  left: 60px;
+  top: 55px;
+  transform: rotate(-12deg) translateY(35px) scale(.6);
+  z-index: 5;
+  transition-delay: 1.3s;
+}
+
+.t3 {
+  left: 180px;
+  top: 55px;
+  transform: rotate(12deg) translateY(35px) scale(.6);
+  z-index: 5;
+  transition-delay: 1.5s;
+}
+
+.t4 {
+  left: 90px;
+  top: 100px;
+  transform: rotate(-5deg) translateY(35px) scale(.6);
+  z-index: 6;
+  transition-delay: 1.7s;
+}
+
+.t5 {
+  left: 150px;
+  top: 105px;
+  transform: rotate(7deg) translateY(35px) scale(.6);
+  z-index: 6;
+  transition-delay: 1.9s;
+}
+
+/* =========================
+   MENSAJE
+========================= */
+
+.message {
+  margin: -5px auto 0;
+  max-width: 410px;
+  font-size: 1.13rem;
+  line-height: 1.7;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1.2s ease;
+  transition-delay: 2.2s;
+}
+
+.page.show .message {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.signature {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  font-style: italic;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all 1s ease;
+  transition-delay: 2.8s;
+}
+
+.page.show .signature {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.signature strong {
+  color: #bd9207;
+}
+
+/* =========================
+   PÉTALOS FLOTANDO
+========================= */
+
+.falling-petal {
+  position: fixed;
+  top: -30px;
+  width: 14px;
+  height: 21px;
+  background: linear-gradient(135deg, #fff06b, #edc229);
+  border-radius: 100% 0 100% 0;
+  opacity: .65;
+  z-index: 1;
+  animation: falling linear infinite;
+}
+
+.fp1 { left: 5%; animation-duration: 8s; }
+.fp2 { left: 18%; animation-duration: 10s; animation-delay: 2s; }
+.fp3 { left: 34%; animation-duration: 7s; animation-delay: 1s; }
+.fp4 { left: 52%; animation-duration: 9s; animation-delay: 3s; }
+.fp5 { left: 68%; animation-duration: 11s; animation-delay: 1.5s; }
+.fp6 { left: 83%; animation-duration: 8s; animation-delay: 4s; }
+.fp7 { left: 94%; animation-duration: 10s; animation-delay: 2.5s; }
+
+@keyframes falling {
+  0% {
+    transform: translateY(-40px) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(110vh) translateX(80px) rotate(500deg);
+  }
+}
+
+@keyframes envelopeFloat {
+  0%,100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 450px) {
+
+  .card {
+    min-height: 610px;
+    padding-top: 22px;
+  }
+
+  .title h1 {
+    font-size: 2.15rem;
+  }
+
+  .bouquet {
+    transform: scale(.82);
+    margin-top: -15px;
+    margin-bottom: -35px;
+  }
+
+  .message {
+    font-size: 1rem;
+    padding: 0 8px;
+  }
+
+  .envelope {
+    transform: scale(.85);
+  }
+
+  .intro-text h1 {
+    font-size: 1.7rem;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- Pétalos -->
-  <div class="petal p1"></div>
-  <div class="petal p2"></div>
-  <div class="petal p3"></div>
-  <div class="petal p4"></div>
-  <div class="petal p5"></div>
+<!-- =========================
+     SOBRE
+========================= -->
+
+<div class="intro" id="intro">
+
+  <div class="intro-text">
+    <h1>Hay algo para ti 🌷</h1>
+    <p>Toca el sobre para abrirlo</p>
+  </div>
+
+  <div class="envelope" id="envelope">
+
+    <div class="letter">
+      🌷
+    </div>
+
+    <div class="envelope-body"></div>
+
+    <div class="flap"></div>
+
+    <div class="heart"></div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     PÁGINA
+========================= -->
+
+<div class="page" id="page">
 
   <div class="card">
 
+    <div class="title">
+      <h1>Para ti 🌷</h1>
+      <p>Un pequeño detalle hecho con mucho cariño.</p>
+    </div>
+
+
+    <!-- RAMO -->
+
     <div class="bouquet">
 
+      <!-- Tallos -->
+      <div class="stem s1"></div>
+      <div class="stem s2"></div>
+      <div class="stem s3"></div>
+      <div class="stem s4"></div>
+      <div class="stem s5"></div>
+
+      <!-- Hojas -->
+      <div class="leaf l1"></div>
+      <div class="leaf l2"></div>
+      <div class="leaf l3"></div>
+      <div class="leaf l4"></div>
+
+
+      <!-- Tulipán 1 -->
       <div class="tulip t1">
-        <div class="flower"></div>
-        <div class="stem"></div>
-        <div class="leaf"></div>
+        <div class="tulip-head">
+          <div class="petal petal-back"></div>
+          <div class="petal petal-left"></div>
+          <div class="petal petal-right"></div>
+          <div class="petal petal-center"></div>
+        </div>
       </div>
 
+
+      <!-- Tulipán 2 -->
       <div class="tulip t2">
-        <div class="flower"></div>
-        <div class="stem"></div>
-        <div class="leaf"></div>
+        <div class="tulip-head">
+          <div class="petal petal-back"></div>
+          <div class="petal petal-left"></div>
+          <div class="petal petal-right"></div>
+          <div class="petal petal-center"></div>
+        </div>
       </div>
 
+
+      <!-- Tulipán 3 -->
       <div class="tulip t3">
-        <div class="flower"></div>
-        <div class="stem"></div>
-        <div class="leaf"></div>
+        <div class="tulip-head">
+          <div class="petal petal-back"></div>
+          <div class="petal petal-left"></div>
+          <div class="petal petal-right"></div>
+          <div class="petal petal-center"></div>
+        </div>
       </div>
 
+
+      <!-- Tulipán 4 -->
       <div class="tulip t4">
-        <div class="flower"></div>
-        <div class="stem"></div>
-        <div class="leaf"></div>
+        <div class="tulip-head">
+          <div class="petal petal-back"></div>
+          <div class="petal petal-left"></div>
+          <div class="petal petal-right"></div>
+          <div class="petal petal-center"></div>
+        </div>
       </div>
 
+
+      <!-- Tulipán 5 -->
       <div class="tulip t5">
-        <div class="flower"></div>
-        <div class="stem"></div>
-        <div class="leaf"></div>
-      </div>
-
-      <div class="tulip t6">
-        <div class="flower"></div>
-        <div class="stem"></div>
-        <div class="leaf"></div>
-      </div>
-
-      <div class="tulip t7">
-        <div class="flower"></div>
-        <div class="stem"></div>
-        <div class="leaf"></div>
+        <div class="tulip-head">
+          <div class="petal petal-back"></div>
+          <div class="petal petal-left"></div>
+          <div class="petal petal-right"></div>
+          <div class="petal petal-center"></div>
+        </div>
       </div>
 
     </div>
 
-    <h1>Para ti 🌷</h1>
+
+    <!-- MENSAJE -->
 
     <div class="message">
-      Un pequeño detalle para recordarte
-      lo especial que eres para mí. 💛
+      Hay personas que merecen recibir flores
+      simplemente por ser quienes son. 💛
       <br><br>
-      Espero que estas flores te saquen
-      una sonrisa, aunque sea pequeñita.
+
+      Así que aquí tienes unas cuantas,
+      aunque estas tienen la pequeña ventaja
+      de que nunca se marchitarán.
     </div>
+
 
     <div class="signature">
       Te quiere mucho,<br>
@@ -251,6 +738,39 @@
     </div>
 
   </div>
+
+</div>
+
+
+<!-- PÉTALOS -->
+
+<div class="falling-petal fp1"></div>
+<div class="falling-petal fp2"></div>
+<div class="falling-petal fp3"></div>
+<div class="falling-petal fp4"></div>
+<div class="falling-petal fp5"></div>
+<div class="falling-petal fp6"></div>
+<div class="falling-petal fp7"></div>
+
+
+<script>
+
+const envelope = document.getElementById("envelope");
+const intro = document.getElementById("intro");
+const page = document.getElementById("page");
+
+envelope.addEventListener("click", () => {
+
+  envelope.classList.add("open");
+
+  setTimeout(() => {
+    intro.classList.add("hidden");
+    page.classList.add("show");
+  }, 1300);
+
+});
+
+</script>
 
 </body>
 </html>
